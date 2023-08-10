@@ -15,7 +15,7 @@ installed_packages = subprocess.check_output(['pip', 'list']).decode().strip().s
 # Strip the header and footer from the output to get a list of packages
 installed_packages = [package.split()[0] for package in installed_packages[2:-3]]
 
-for package in tqdm(installed_packages):
+for package in tqdm(installed_packages, desc='Checking packages', unit='package'):
     # Get the location of the package using the `pip show` command
     try:
         package_location = subprocess.check_output(['pip', 'show', package]).decode().strip().split('\n')
